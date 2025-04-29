@@ -43,7 +43,9 @@ const App = () => {
     <div className="content h-screen">
       <LiveProvider code={code} noInline>
         <div className="flex">
-          <LiveEditor className="font-mono flex-1 h-screen" />
+          <div className="flex-1 h-screen overflow-auto">
+            <LiveEditor className="font-mono" />
+          </div>
           <div className="flex flex-col flex-1 h-screen p-4">
             <LivePreview />
             <LiveError className="text-red-800 bg-red-100 mt-2" />
