@@ -1,7 +1,11 @@
 import './App.css';
 import { LiveProvider, LiveEditor, LivePreview, LiveError } from 'react-live';
 
-const code = `
+const KEY = 'TECHUMBER_REACT_PLAYGROUND';
+
+const code =
+  localStorage.getItem(KEY) ||
+  `
 type Props = {
   label: string;
 }
@@ -39,12 +43,15 @@ render(<Counter label="Counter" />)
 `;
 
 const App = () => {
+  const handleChange = (value: string) => {
+    localStorage.setItem(KEY, value);
+  };
   return (
     <div className="content h-screen">
       <LiveProvider code={code} noInline>
         <div className="flex">
           <div className="flex-1 h-screen overflow-auto">
-            <LiveEditor className="font-mono" />
+            <LiveEditor className="font-mono" onChange={handleChange} />
           </div>
           <div className="flex flex-col flex-1 h-screen p-4">
             <LivePreview />
